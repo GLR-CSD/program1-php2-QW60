@@ -13,7 +13,7 @@ class Album {
     private string $artiesten;
 
     /** @var string De releasedatum van het album */
-    private string $releaseDatum;
+    private string $release_datum;
 
     /** @var string De URL van het album */
     private string $URL;
@@ -30,17 +30,17 @@ class Album {
      * @param int|null $ID Het ID van het album.
      * @param string $naam De naam van het album.
      * @param string $artiesten De artiest(en) van het album.
-     * @param string $releaseDatum De releasedatum van het album.
+     * @param string $release_datum De releasedatum van het album.
      * @param string $URL De URL van het album.
      * @param string $afbeelding De afbeeldingslocatie van het album.
      * @param float $prijs De prijs van het album.
      */
-    public function __construct(?int $ID, string $naam, string $artiesten, string $releaseDatum, string $URL, string $afbeelding, float $prijs)
+    public function __construct(?int $ID, string $naam, string $artiesten, string $release_datum, string $URL, string $afbeelding, float $prijs)
     {
         $this->ID = $ID;
         $this->naam = $naam;
         $this->artiesten = $artiesten;
-        $this->releaseDatum = $releaseDatum;
+        $this->release_datum = $release_datum;
         $this->URL = $URL;
         $this->afbeelding = $afbeelding;
         $this->prijs = $prijs;
@@ -66,7 +66,7 @@ class Album {
                 $row['ID'],
                 $row['naam'],
                 $row['artiesten'],
-                $row['releaseDatum'],
+                $row['release_datum'],
                 $row['URL'],
                 $row['afbeelding'],
                 $row['prijs']
@@ -158,7 +158,7 @@ class Album {
     public function save(PDO $db): void
     {
         // Voorbereiden van de query
-        $stmt = $db->prepare("INSERT INTO Album (naam, artiesten, Release_datum,URL, afbeelding, prijs) VALUES (:naam, :artiesten, :releaseDatum, :URL, :afbeelding, :prijs)");
+        $stmt = $db->prepare("INSERT INTO Album (naam, artiesten, release_datum,URL, afbeelding, prijs) VALUES (:naam, :artiesten, :releaseDatum, :URL, :afbeelding, :prijs)");
         $stmt->bindParam(':naam', $this->naam);
         $stmt->bindParam(':artiesten', $this->artiesten);
         $stmt->bindParam(':releaseDatum', $this->releaseDatum);
@@ -176,7 +176,7 @@ class Album {
     public function update(PDO $db): void
     {
         // Voorbereiden van de query
-        $stmt = $db->prepare("UPDATE Album SET naam = :naam, artiesten = :artiesten, Release_datum= :releaseDatum, URL = :URL, afbeelding = :afbeelding, prijs = :prijs WHERE ID = :ID");
+        $stmt = $db->prepare("UPDATE Album SET naam = :naam, artiesten = :artiesten, release_datum= :releaseDatum, URL = :URL, afbeelding = :afbeelding, prijs = :prijs WHERE ID = :ID");
         $stmt->bindParam(':ID', $this->ID);
         $stmt->bindParam(':naam', $this->naam);
         $stmt->bindParam(':artiesten', $this->artiesten);
@@ -205,7 +205,7 @@ class Album {
 
     public function getReleaseDatum(): string
     {
-        return $this->releaseDatum;
+        return $this->release_datum;
     }
 
     public function getURL(): string

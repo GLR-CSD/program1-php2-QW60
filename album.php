@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 session_start();
 
 // Haal de eventuele fouten en formulier waarden op uit de sessie
@@ -12,8 +14,8 @@ unset($_SESSION['formValues']);
 require_once 'db.php';
 require_once 'classes/Album.php';
 
-// Haal alle personen op uit de database
-$personen = Persoon::getAll($db);
+// Haal alle albums op uit de database
+$albums = Album::getAll($db);
 
 // Laad de view
-include 'views/index_view.php';
+include 'views/album_view.php';
